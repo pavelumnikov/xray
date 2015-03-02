@@ -1,9 +1,11 @@
+#include <xrCore/ExtensionFramework/Public/IModuleInterface.h>
+
 #ifndef XRSHEDULER_H_INCLUDED
 #define XRSHEDULER_H_INCLUDED
 
 #include "ISheduled.h"
 
-class	ENGINE_API	CSheduler
+class	ENGINE_API	CSheduler : public xrIModuleInterface
 {
 private:
 	struct Item

@@ -22,7 +22,6 @@ class IRenderDeviceRender;
 class IEnvDescriptorRender;
 class IThunderboltRender;
 class IThunderboltDescRender;
-class IRainRender;
 class ILensFlareRender;
 class IEnvironmentRender;
 class IEnvDescriptorMixerRender;

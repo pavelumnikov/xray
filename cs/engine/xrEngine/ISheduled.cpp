@@ -2,6 +2,8 @@
 #include "xrSheduler.h"
 #include "xr_object.h"
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 ISheduled::ISheduled	()	
 {
 	shedule.t_min		= 20;
@@ -16,26 +18,29 @@ ISheduled::ISheduled	()
 extern		BOOL		g_bSheduleInProgress;
 ISheduled::~ISheduled	()
 {
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
 	VERIFY2				(
-		!Engine.Sheduler.Registered(this),
+		!shedulerInterface->Registered( this ),
 		make_string("0x%08x : %s",this,*shedule_Name())
 	);
 
 	// sad, but true
 	// we need this to become MASTER_GOLD
 #ifndef DEBUG
-	Engine.Sheduler.Unregister				(this);
+	shedulerInterface->Unregister(this);
 #endif // DEBUG
 }
 
 void	ISheduled::shedule_register			()
 {
-	Engine.Sheduler.Register				(this);
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+	shedulerInterface->Register( this );
 }
 
 void	ISheduled::shedule_unregister		()
 {
-	Engine.Sheduler.Unregister				(this);
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+	shedulerInterface->Unregister( this );
 }
 
 void	ISheduled::shedule_Update			(u32 dt)

@@ -3,9 +3,9 @@
 Copyright (c) 1997-2001 John Robbins -- All rights reserved.
 ----------------------------------------------------------------------*/
 
-#include "stdafx.h"
-#include "MiniDump.h"
-#include "StackTrace.h"
+#include <xrCore/stdafx.h>
+#include <xrCore/Debug/MiniDump.h>
+#include <xrCore/Debug/StackTrace.h>
 #include <process.h>
 
 // The structure I can package the data necessary to the dump writer thread.

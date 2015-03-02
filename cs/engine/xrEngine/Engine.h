@@ -31,7 +31,7 @@ public:
 	// DLL api stuff
 	CEngineAPI			External;
 	CEventAPI			Event;
-	CSheduler			Sheduler;
+	//CSheduler			Sheduler;
 
 	void				Initialize	();
 	void				Destroy		();

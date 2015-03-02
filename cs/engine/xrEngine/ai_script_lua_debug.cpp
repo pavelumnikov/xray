@@ -124,5 +124,5 @@ bool Script::bfListLevelVars(CLuaVirtualMachine *tpLuaVirtualMachine, int iStack
 //		lua_pop	(tpLuaVirtualMachine, 1);  /* remove upvalue value */
 //	}
 //	return		(true);
-	return		(false);
+	return		false;
 }

@@ -11,6 +11,8 @@
 #include "weapon.h"
 #include "game_cl_mp.h"
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 namespace mp_anticheat
 {
 
@@ -42,6 +44,7 @@ configs_dumper::~configs_dumper()
 
 void configs_dumper::shedule_Update(u32 dt)
 {
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
 	DWORD thread_result = WaitForSingleObject(m_make_done_event, 0);
 	R_ASSERT((thread_result != WAIT_ABANDONED) && (thread_result != WAIT_FAILED));
 	R_ASSERT(m_state == ds_active);
@@ -49,7 +52,7 @@ void configs_dumper::shedule_Update(u32 dt)
 	{
 		m_complete_cb	(m_buffer_for_compress, m_buffer_for_compress_size, m_dump_result.size());
 		m_state			= ds_not_active;
-		Engine.Sheduler.Unregister(this);
+		shedulerInterface->Unregister(this);
 	}
 }
 
@@ -176,6 +179,8 @@ void configs_dumper::sign_configs		()
 
 void configs_dumper::dump_config(complete_callback_t complete_cb)
 {
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+
 	if (is_active())
 	{
 #ifdef DEBUG
@@ -188,13 +193,13 @@ void configs_dumper::dump_config(complete_callback_t complete_cb)
 	if (m_make_start_event)
 	{
 		SetEvent(m_make_start_event);
-		Engine.Sheduler.Register	(this, TRUE);
+		shedulerInterface->Register(this, TRUE);
 		return;
 	}
 	m_make_start_event			= CreateEvent(NULL, FALSE, TRUE, NULL);
 	m_make_done_event			= CreateEvent(NULL, FALSE, FALSE, NULL);
 	thread_spawn				(&configs_dumper::dumper_thread, "configs_dumper", 0, this);
-	Engine.Sheduler.Register	(this, TRUE);
+	shedulerInterface->Register(this, TRUE);
 }
 
 void configs_dumper::compress_configs	()

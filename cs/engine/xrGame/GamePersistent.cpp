@@ -20,6 +20,7 @@
 #include "spectator.h"
 
 #include <xrEngine/xrSASH.h>
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
 
 #ifndef MASTER_GOLD
 #	include "custommonster.h"
@@ -565,8 +566,11 @@ void CGamePersistent::OnFrame	()
 	}
 	__super::OnFrame			();
 
-	if(!Device.Paused())
-		Engine.Sheduler.Update		();
+	if ( !Device.Paused() ) {
+		CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+		shedulerInterface->Update();
+		//Engine.Sheduler.Update();
+	}
 
 	// update weathers ambient
 	if(!Device.Paused())

@@ -259,6 +259,10 @@ using RTokenVecIt = RTokenVec::iterator;
 
 #include "net_utils.h"
 
+/// STL
+#include <cstdint>
+#include <hash_map>
+
 // destructor
 template <class T>
 class destructor

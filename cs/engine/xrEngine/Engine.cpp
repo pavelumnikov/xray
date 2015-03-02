@@ -6,6 +6,8 @@
 #include "Engine.h"
 #include "dedicated_server_only.h"
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 CEngine				Engine;
 
 //////////////////////////////////////////////////////////////////////
@@ -27,8 +29,10 @@ extern	void msCreate		(LPCSTR name);
 PROTECT_API void CEngine::Initialize	(void)
 {
 	// Other stuff
-	Engine.Sheduler.Initialize			( );
+	//Engine.Sheduler.Initialize			( );
 	// 
+	CSheduler* shedulerIface = new CSheduler();
+	XRayInterfaceFactory->RegisterInterface( shedulerIface, xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
 #ifdef DEBUG
 	msCreate							("game");
 #endif
@@ -36,7 +40,7 @@ PROTECT_API void CEngine::Initialize	(void)
 
 void CEngine::Destroy	()
 {
-	Engine.Sheduler.Destroy				( );
+	//Engine.Sheduler.Destroy				( );
 #ifdef DEBUG_MEMORY_MANAGER
 	extern void	dbg_dump_leaks_prepare	( );
 	if (Memory.debug_mode)				dbg_dump_leaks_prepare	();

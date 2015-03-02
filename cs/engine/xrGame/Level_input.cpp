@@ -24,6 +24,8 @@
 
 #include <Include/xrRender/DebugRender.h>
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 #ifdef DEBUG
 #	include "ai/monsters/BaseMonster/base_monster.h"
 
@@ -320,13 +322,23 @@ void CLevel::IR_OnKeyboardPress	(int key)
 					if (pActor)
 						pActor->inventory().Items_SetCurrentEntityHud(false);
 				}
+
+				CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+
 				if (tpObject)
 				{
-					Engine.Sheduler.Unregister	(tpObject);
-					Engine.Sheduler.Register	(tpObject, TRUE);
+					shedulerInterface->Unregister( tpObject );
+					shedulerInterface->Register( tpObject, TRUE );
+
+					/*Engine.Sheduler.Unregister( tpObject );
+					Engine.Sheduler.Register( tpObject, TRUE );*/
 				};
-				Engine.Sheduler.Unregister	(*I);
-				Engine.Sheduler.Register	(*I, TRUE);
+
+				shedulerInterface->Unregister( *I );
+				shedulerInterface->Register( *I, TRUE );
+
+				/*Engine.Sheduler.Unregister	(*I);
+				Engine.Sheduler.Register	(*I, TRUE);*/
 
 				CActor* pActor = smart_cast<CActor*> (*I);
 				if (pActor)

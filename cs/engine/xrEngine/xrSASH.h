@@ -52,8 +52,7 @@ private:
 
 	//	OA option handling
 	void	DescribeOption( char* pszOptionName, const oaOptionDependency &Dependency);
-	oaOptionDataType
-			GetOptionType( char* pszOptionName );
+	oaOptionDataType GetOptionType( char* pszOptionName );
 	void	GetOption( char* pszOptionName);
 	void	SetOption(oaNamedOption *pOption);
 

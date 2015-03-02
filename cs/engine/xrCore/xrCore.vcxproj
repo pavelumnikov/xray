@@ -92,7 +92,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -207,11 +207,14 @@
     <ClCompile Include="crc32.cpp" />
     <ClCompile Include="Debug\MiniDump.cpp" />
     <ClCompile Include="Debug\StackTrace.cpp" />
+    <ClCompile Include="dxerr.cpp" />
+    <ClCompile Include="ExtensionFramework\Private\xrModuleManager.cpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="FileSystem_borland.cpp" />
     <ClCompile Include="file_stream_reader.cpp" />
     <ClCompile Include="FS.cpp" />
     <ClCompile Include="FTimer.cpp" />
+    <ClCompile Include="Jobs\Private\xrJobManager.cpp" />
     <ClCompile Include="LocatorAPI.cpp" />
     <ClCompile Include="LocatorAPI_auth.cpp" />
     <ClCompile Include="LocatorAPI_defs.cpp" />
@@ -248,7 +251,7 @@
     <ClCompile Include="rt_lzo1x_d3.cpp" />
     <ClCompile Include="rt_lzo_init.cpp" />
     <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Create</PrecompiledHeader>
       <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">false</ShowIncludes>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -303,6 +306,9 @@
     <ClInclude Include="Debug\MiniDump.h" />
     <ClInclude Include="Debug\StackTrace.h" />
     <ClInclude Include="Debug\SymbolEngine.h" />
+    <ClInclude Include="dxerr.h" />
+    <ClInclude Include="ExtensionFramework\Public\IModuleManager.h" />
+    <ClInclude Include="ExtensionFramework\Public\IModuleInterface.h" />
     <ClInclude Include="fastdelegate.h" />
     <CustomBuild Include="FileSystem.h" />
     <ClInclude Include="file_stream_reader.h" />
@@ -315,6 +321,12 @@
     <ClInclude Include="FTimer.h" />
     <ClInclude Include="intrusive_ptr.h" />
     <ClInclude Include="intrusive_ptr_inline.h" />
+    <ClInclude Include="Jobs\Private\xrJobArea.h" />
+    <ClInclude Include="Jobs\Private\xrJobCPUDispatcher.h" />
+    <ClInclude Include="Jobs\Private\xrJobManager.h" />
+    <ClInclude Include="Jobs\Public\IJobDispatcher.h" />
+    <ClInclude Include="Jobs\Public\IJobManager.h" />
+    <ClInclude Include="Jobs\Public\xrJob.h" />
     <ClInclude Include="LocatorAPI.h" />
     <ClInclude Include="LocatorAPI_defs.h" />
     <CustomBuild Include="LocatorAPI_Notifications.h">
@@ -330,6 +342,7 @@
     <ClInclude Include="PPMd.h" />
     <ClInclude Include="PPMdType.h" />
     <ClInclude Include="ppmd_compressor.h" />
+    <ClInclude Include="Rendering\Public\IRendererModule.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="rt_compressor.h" />
     <ClInclude Include="rt_config1x.h" />
@@ -347,6 +360,15 @@
     <ClInclude Include="string_concatenations.h" />
     <ClInclude Include="string_concatenations_inline.h" />
     <ClInclude Include="SubAlloc.hpp" />
+    <ClInclude Include="Templates\Allocator\TDefaultAllocator.h" />
+    <ClInclude Include="Templates\Allocator\TFixedAllocator.h" />
+    <ClInclude Include="Templates\THashMap.h" />
+    <ClInclude Include="Templates\TDefaultTemplateTypes.h" />
+    <ClInclude Include="Templates\TLinkedList.h" />
+    <ClInclude Include="Templates\TTypeTraits.h" />
+    <ClInclude Include="Threading\ThreadLocal.h" />
+    <ClInclude Include="Threading\Win32\details\Win32ThreadLocalBase.h" />
+    <ClInclude Include="Threading\Win32\Win32ThreadLocal.h" />
     <ClInclude Include="vector.h" />
     <ClInclude Include="XML\tinystr.h" />
     <ClInclude Include="XML\tinyxml.h" />

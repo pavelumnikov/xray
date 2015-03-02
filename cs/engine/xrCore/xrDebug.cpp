@@ -15,7 +15,7 @@
 
 extern bool shared_str_initialized;
 
-#define USE_BUG_TRAP
+//#define USE_BUG_TRAP
 
 #ifdef __BORLANDC__
 #include "d3d9.h"
@@ -28,9 +28,9 @@ extern bool shared_str_initialized;
 #include <exception>
 #endif
 
-#ifndef __BORLANDC__
-#pragma comment(lib, "dxerr.lib")
-#endif
+//#ifndef __BORLANDC__
+//#pragma comment(lib, "dxerr.lib")
+//#endif
 
 #include <dbghelp.h> // MiniDump flags
 
@@ -261,7 +261,7 @@ void xrDebug::Backend(const char* expression, const char* description, const cha
 LPCSTR xrDebug::ErrorToString(long code)
 {
     static string1024 descStorage;
-    const char* errorDesc = DXGetErrorDescription(code);
+	const char* errorDesc = DXGetErrorString( code );
     if (!errorDesc)
     {
         FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, 0, code, 0, descStorage, sizeof(descStorage) - 1, 0);
@@ -421,6 +421,14 @@ void xrDebug::SaveMiniDump(EXCEPTION_POINTERS* exPtrs)
     }
     WriteMiniDump(MINIDUMP_TYPE(MiniDumpFilterMemory | MiniDumpScanMemory),
         dumpPath, GetCurrentThreadId(), exPtrs);
+}
+#else
+void xrDebug::SetupExceptionHandler( const bool& dedicated ) {
+	/// TODO: make fallback solution
+}
+
+void xrDebug::SaveMiniDump( EXCEPTION_POINTERS* exPtrs ) {
+	/// TODO: make fallback solution
 }
 #endif
 

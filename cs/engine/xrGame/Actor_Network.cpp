@@ -41,6 +41,8 @@
 #include "characterphysicssupport.h"
 #include "game_cl_base_weapon_usage_statistic.h"
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 #ifdef DEBUG
 #	include "debug_renderer.h"
 #	include "Physics.h"
@@ -583,7 +585,9 @@ BOOL CActor::net_Spawn		(CSE_Abstract* DC)
 
 	setEnabled				(E->s_flags.is(M_SPAWN_OBJECT_LOCAL));
 
-	Engine.Sheduler.Register	(this,TRUE);
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+	shedulerInterface->Register( this, TRUE );
+	//Engine.Sheduler.Register	(this,TRUE);
 
 	if (!IsGameTypeSingle())
 	{
@@ -735,7 +739,8 @@ void CActor::net_Destroy	()
 
 	if(g_actor == this) g_actor= NULL;
 
-	Engine.Sheduler.Unregister	(this);
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+	shedulerInterface->Unregister( this );
 
 	if(	CActor::actor_camera_shell && 
 		CActor::actor_camera_shell->get_ElementByStoreOrder( 0 )->PhysicsRefObject() 

@@ -3,10 +3,10 @@
 Copyright (c) 1997-2000 John Robbins -- All rights reserved.
 ----------------------------------------------------------------------*/
 
-#include "stdafx.h"
-#include "StackTrace.h"
-#include "SymbolEngine.h"
-#include "MiniDump.h"
+#include <xrCore/stdafx.h>
+#include <xrCore/Debug/StackTrace.h>
+#include <xrCore/Debug/SymbolEngine.h>
+#include <xrCore/Debug/MiniDump.h>
 #include <psapi.h>
 #pragma comment(lib, "psapi.lib")
 

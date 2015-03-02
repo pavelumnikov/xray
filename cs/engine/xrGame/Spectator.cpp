@@ -25,6 +25,8 @@
 #include "string_table.h"
 #include "map_manager.h"
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 
 const float	CSpectator::cam_inert_value = 0.7f;
 
@@ -306,6 +308,8 @@ void CSpectator::IR_OnMouseMove(int dx, int dy)
 
 void CSpectator::FirstEye_ToPlayer(CObject* pObject)
 {
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+
 	CObject*	pCurViewEntity = Level().CurrentEntity();
 	CActor*		pOldActor = NULL;
 	if (pCurViewEntity)
@@ -317,16 +321,16 @@ void CSpectator::FirstEye_ToPlayer(CObject* pObject)
 		};
 		if (smart_cast<CSpectator*>(pCurViewEntity))
 		{
-			Engine.Sheduler.Unregister	(pCurViewEntity);
-			Engine.Sheduler.Register	(pCurViewEntity, TRUE);
+			shedulerInterface->Unregister	(pCurViewEntity);
+			shedulerInterface->Register( pCurViewEntity, TRUE );
 		};
 	};
 	if (pObject)
 	{
 		Level().SetEntity(pObject);
 
-		Engine.Sheduler.Unregister	(pObject);
-		Engine.Sheduler.Register	(pObject, TRUE);
+		shedulerInterface->Unregister( pObject );
+		shedulerInterface->Register( pObject, TRUE );
 
 		CActor* pActor = smart_cast<CActor*> (pObject);
 		if (pActor)

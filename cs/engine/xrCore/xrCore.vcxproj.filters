@@ -82,6 +82,45 @@
     <Filter Include="XML\TinyXML">
       <UniqueIdentifier>{8826a13a-90b7-446e-b949-32fb8a7626e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DXErr">
+      <UniqueIdentifier>{97bf3aa6-7ce6-4382-ac1b-bc9d7f0c3475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Templates">
+      <UniqueIdentifier>{1713cb92-81ed-4d45-9833-baa2110cfbc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Jobs">
+      <UniqueIdentifier>{3a97e38f-1bb8-4db5-8e24-9ff19f2d7230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extension Framework">
+      <UniqueIdentifier>{0e55f86e-826d-410c-befe-be9c4ffb5409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extension Framework\public">
+      <UniqueIdentifier>{106be789-c0ee-4f5b-a3da-887ca077ff2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extension Framework\private">
+      <UniqueIdentifier>{869604d4-c84f-4583-9d08-919cc38b4e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Jobs\public">
+      <UniqueIdentifier>{876928cd-aaba-4d24-8a29-4c4df4cc9f91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Jobs\private">
+      <UniqueIdentifier>{12c9c898-6e04-48a0-b5c5-2363c286c321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Templates\Allocator">
+      <UniqueIdentifier>{d1b336c4-a9b5-41b1-8754-7379df7b3800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\Win32">
+      <UniqueIdentifier>{4f27231a-9f08-442b-a1d1-50e5cd25b784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\Win32\details">
+      <UniqueIdentifier>{56dda6e0-db51-4fce-a7d3-07278f471fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{78b6e127-fd07-4748-93b1-8c9599fc5ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Public">
+      <UniqueIdentifier>{73caf8a7-63b9-4475-beab-ac6129c55a9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -266,6 +305,15 @@
     </ClCompile>
     <ClCompile Include="Debug\StackTrace.cpp">
       <Filter>Debug core</Filter>
+    </ClCompile>
+    <ClCompile Include="dxerr.cpp">
+      <Filter>DXErr</Filter>
+    </ClCompile>
+    <ClCompile Include="Jobs\Private\xrJobManager.cpp">
+      <Filter>Jobs\private</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtensionFramework\Private\xrModuleManager.cpp">
+      <Filter>Extension Framework\private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -559,6 +607,63 @@
     </ClInclude>
     <ClInclude Include="Debug\SymbolEngine.h">
       <Filter>Debug core</Filter>
+    </ClInclude>
+    <ClInclude Include="dxerr.h">
+      <Filter>DXErr</Filter>
+    </ClInclude>
+    <ClInclude Include="Jobs\Public\IJobDispatcher.h">
+      <Filter>Jobs\public</Filter>
+    </ClInclude>
+    <ClInclude Include="Jobs\Public\IJobManager.h">
+      <Filter>Jobs\public</Filter>
+    </ClInclude>
+    <ClInclude Include="Jobs\Public\xrJob.h">
+      <Filter>Jobs\public</Filter>
+    </ClInclude>
+    <ClInclude Include="Jobs\Private\xrJobArea.h">
+      <Filter>Jobs\private</Filter>
+    </ClInclude>
+    <ClInclude Include="Jobs\Private\xrJobManager.h">
+      <Filter>Jobs\private</Filter>
+    </ClInclude>
+    <ClInclude Include="Jobs\Private\xrJobCPUDispatcher.h">
+      <Filter>Jobs\private</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates\TDefaultTemplateTypes.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates\TLinkedList.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates\Allocator\TFixedAllocator.h">
+      <Filter>Templates\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates\THashMap.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates\Allocator\TDefaultAllocator.h">
+      <Filter>Templates\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtensionFramework\Public\IModuleManager.h">
+      <Filter>Extension Framework\public</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtensionFramework\Public\IModuleInterface.h">
+      <Filter>Extension Framework\public</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\ThreadLocal.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Win32\Win32ThreadLocal.h">
+      <Filter>Threading\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Win32\details\Win32ThreadLocalBase.h">
+      <Filter>Threading\Win32\details</Filter>
+    </ClInclude>
+    <ClInclude Include="Templates\TTypeTraits.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Public\IRendererModule.h">
+      <Filter>Rendering\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -85,26 +85,18 @@ void	CSheduler::internal_Registration()
 void CSheduler::internal_Register	(ISheduled* O, BOOL RT)
 {
 	VERIFY	(!O->shedule.b_locked)	;
-	if (RT)
-	{
-		// Fill item structure
-		Item						TNext;
-		TNext.dwTimeForExecute		= Device.dwTimeGlobal;
-		TNext.dwTimeOfLastExecute	= Device.dwTimeGlobal;
-		TNext.Object				= O;
-		TNext.scheduled_name		= O->shedule_Name();
-		O->shedule.b_RT				= TRUE;
 
+	Item TNext;
+	TNext.dwTimeForExecute = Device.dwTimeGlobal;
+	TNext.dwTimeOfLastExecute = Device.dwTimeGlobal;
+	TNext.Object = O;
+	TNext.scheduled_name = O->shedule_Name();
+
+	if (RT) {
+		O->shedule.b_RT				= TRUE;
 		ItemsRT.push_back			(TNext);
 	} else {
-		// Fill item structure
-		Item						TNext;
-		TNext.dwTimeForExecute		= Device.dwTimeGlobal;
-		TNext.dwTimeOfLastExecute	= Device.dwTimeGlobal;
-		TNext.Object				= O;
-		TNext.scheduled_name		= O->shedule_Name();
 		O->shedule.b_RT				= FALSE;
-
 		// Insert into priority Queue
 		Push						(TNext);
 	}

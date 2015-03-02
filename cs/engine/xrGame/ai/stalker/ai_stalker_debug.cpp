@@ -56,6 +56,8 @@
 #include "aimers_bone.h"
 #include "smart_cover_planner_target_selector.h"
 
+#include <xrCore/ExtensionFramework/Public/IModuleManager.h>
+
 CActor *g_debug_actor = 0;
 
 void try_change_current_entity()
@@ -107,12 +109,20 @@ void try_change_current_entity()
 
 	Level().SetEntity		(nearest_agent);
 	actor->inventory().Items_SetCurrentEntityHud(false);
+
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
 	
-	Engine.Sheduler.Unregister	(actor);
+	shedulerInterface->Unregister( actor );
+	shedulerInterface->Register( actor );
+
+	shedulerInterface->Unregister( nearest_agent );
+	shedulerInterface->Register( nearest_agent, TRUE );
+
+	/*Engine.Sheduler.Unregister	(actor);
 	Engine.Sheduler.Register	(actor);
 	
 	Engine.Sheduler.Unregister	(nearest_agent);
-	Engine.Sheduler.Register	(nearest_agent, TRUE);
+	Engine.Sheduler.Register	(nearest_agent, TRUE);*/
 }
 
 void restore_actor()
@@ -120,13 +130,21 @@ void restore_actor()
 	VERIFY		(g_debug_actor);
 	VERIFY		(!smart_cast<CActor*>(Level().CurrentEntity()));
 
-	Engine.Sheduler.Unregister	(Level().CurrentEntity());
-	Engine.Sheduler.Register	(Level().CurrentEntity());
+	CSheduler* shedulerInterface = XRayInterfaceFactory->QueryTypedInterface< CSheduler >( xrInterfaceFourCC<'G', 'S', 'H', 'D'>::value );
+
+	shedulerInterface->Unregister( Level().CurrentEntity() );
+	shedulerInterface->Register( Level().CurrentEntity() );
+
+	/*Engine.Sheduler.Unregister	(Level().CurrentEntity());
+	Engine.Sheduler.Register	(Level().CurrentEntity());*/
 
 	Level().SetEntity			(g_debug_actor);
 
-	Engine.Sheduler.Unregister	(g_debug_actor);
-	Engine.Sheduler.Register	(g_debug_actor, TRUE);
+	shedulerInterface->Unregister( g_debug_actor );
+	shedulerInterface->Register( g_debug_actor, TRUE );
+
+	/*Engine.Sheduler.Unregister	(g_debug_actor);
+	Engine.Sheduler.Register	(g_debug_actor, TRUE);*/
 
 	g_debug_actor->inventory().Items_SetCurrentEntityHud(true);
 
